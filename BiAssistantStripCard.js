@@ -30,15 +30,7 @@ export class BiAssistantStripCard extends LitElement {
             //let isSpleep = attrs['preset_mode'] == 'Sleep'
             
             return html`
-            <div id="aspect-ratio" 
-              style="width:${100*this.config.aspect_ratio||100}%" 
-              class="${state.state=='unavailable'||state.state.state=='unavailable'?'offline':''}" 
-              @mouseout="${function(){this.over=false}}" 
-              @mouseover="${function(){this.over=true}}" 
-              @mousemove="${this.onMouseMove}"
-              @touchmove="${this.onMouseMove}"
-              @mouseup="${this.onMouseUp}"
-              @touchend="${this.onMouseUp}">
+            <div id="aspect-ratio" >
               <ha-card id="strip" class="${state.state=='on'||state.state.state=='on'?'active':''}" style="background:${this.config.background_color||''}">
                 Test
               </ha-card>
@@ -49,12 +41,6 @@ export class BiAssistantStripCard extends LitElement {
             return css `
             
             `
-          }
-          _mouseover(e){
-            this.over=true;
-          }
-          _clickSlider(e){
-            const target = e.target;
           }
           _action(e){
             const target = e.currentTarget;
