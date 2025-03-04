@@ -29,7 +29,6 @@ export class BiAssistantStripCard extends LitElement {
             const attrs = state.attributes;
             //let isSpleep = attrs['preset_mode'] == 'Sleep'
             
-            const includeDomains = ["fan"];
             return html`
             <div id="aspect-ratio" 
               style="width:${100*this.config.aspect_ratio||100}%" 
@@ -40,69 +39,8 @@ export class BiAssistantStripCard extends LitElement {
               @touchmove="${this.onMouseMove}"
               @mouseup="${this.onMouseUp}"
               @touchend="${this.onMouseUp}">
-              <ha-card id="fan" class="${state.state=='on'||state.state.state=='on'?'active':''}" style="background:${this.config.background_color||''}">
-                <div id="container">
-                  <div class="fanbox ${state.state=='on'||state.state.state=='on'?'active':''}">
-                    <div class="blades" style="animation-duration:${nowspeed}s">
-                      <div class="b1 ang1"></div>
-                      <div class="b2 ang25"></div>
-                      <div class="b3 ang49"></div>
-                    </div>
-                    ${fans.map(i => html`<div class="fan ang${i}"></div>`)}
-                    ${fan1s.map(i => html`<div class="fan1 ang${i}"></div>`)}
-                    <div class="c2" style="border-color:${FanXiaomiCard.getPMColor(airLevel)}"></div>
-                    <div class="c3">
-                        <ha-icon id="power" icon="${state.state=='on'||state.state.state=='on'?(isSpleep?'mdi:weather-night':isManual?'mdi:fan-speed-1':'mdi:leaf'):'mdi:power'}" 
-                          class="c_icon state show" role="button" tabindex="0" aria-disabled="false" .cmd="${'toggle'}" @click=${this._action}></ha-icon>
-                    </div>
-                    <div class="c1">
-                      <div class="wrapper rightc complete">
-                        <div class="circle rightcircle ${filterLevel<20?"red":""}" style="transform:${filterLevel?filterLevel<50?"rotate(-135deg)":"rotate("+(filterLevel/(100/360)-180-135)+"deg)":""}"></div>
-                      </div>
-                      <div class="wrapper leftc complete">
-                        <div class="circle leftcircle ${filterLevel<20?"red":""}" style="transform:${filterLevel?filterLevel<50?"rotate("+(filterLevel/(100/360)-135)+"deg)":"rotate(45deg)":""}"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div id="buttons" class="${this.over || !this.config.slider_option?'show':'hidden'}" style="${!this.config.slider_option?'margin-top:32px;':''}background:${this.config.background_color||'var(--card-background-color)'}">
-                  <mwc-icon-button id="block" class="c_icon ${isLock?"active":""}" role="button" tabindex="0" aria-disabled="false" .cmd="${'lock'}" @click=${this._action}>
-                    <ha-icon icon="${isLock?"mdi:lock":"mdi:lock-open"}"></ha-icon>
-                  </mwc-icon-button>
-                  <div class="icon-badge-container c_icon" .cmd="${'manualLevel'}" @click=${this._action}>
-                    <mwc-icon-button id="bmanual" class="${isManual?"active":""}" .cmd="${'favorite'}" @click=${this._action}>
-                      <ha-icon icon="mdi:fan-speed-1"></ha-icon>
-                    </mwc-icon-button>
-                    <div class="badge">${parseInt(manualState.state)}</div>
-                  </div>
-                  <mwc-icon-button id="bsound" class="c_icon ${isSound?"active":""}" role="button" tabindex="0" aria-disabled="false" .cmd="${'sound'}" @click=${this._action}>
-                    <ha-icon icon="${isSound?'mdi:volume-high':'mdi:volume-off'}"></ha-icon>
-                  </mwc-icon-button>
-                  <mwc-icon-button id="bauto" class="c_icon ${isAuto?"active":""}" role="button" tabindex="0" aria-disabled="false" .cmd="${'auto'}" @click=${this._action}>
-                    <ha-icon icon="mdi:fan-auto"></ha-icon>
-                  </mwc-icon-button>
-                  <mwc-icon-button id="bsleep" class="c_icon ${isSpleep?"active":""}" role="button" tabindex="0" aria-disabled="false" .cmd="${'sleep'}" @click=${this._action}>
-                    <ha-icon icon="mdi:weather-night"></ha-icon>
-                  </mwc-icon-button>
-                </div>
-                <mwc-slider
-                  id="manualSlider" 
-                  class="hidden" 
-                  pin 
-                  min="${manualState.attributes['min']}"
-                  max="${manualState.attributes['max']}" 
-                  value="${manualState.state}" 
-                  step="${manualState.attributes['step']}" 
-                  style="background:${this.config.background_color||'var(--card-background-color)'}" 
-                  @mousedown=${this._clickSƒlƒider}
-                  @change=${this._changeManualLevel}
-                ></mwc-slider>
-                <div class="header" style="font-size: 9px;" class="${this.over?'hidden':'show'}">   
-                    <div class="name">
-                      <span class="ellipsis show" style="">${this.config.name}</span>
-                    </div>
-                </div>
+              <ha-card id="strip" class="${state.state=='on'||state.state.state=='on'?'active':''}" style="background:${this.config.background_color||''}">
+                Test
               </ha-card>
             </div>
             `
